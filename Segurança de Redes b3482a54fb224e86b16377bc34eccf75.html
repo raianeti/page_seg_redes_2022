@@ -1,0 +1,670 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Segurança de Redes </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b3482a54-fb22-4e86-b163-77bc34eccf75" class="page sans"><header><img class="page-cover-image" src="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Imagem2.png" style="object-position:center 94.32000000000001%"/><h1 class="page-title">Segurança de Redes </h1></header><div class="page-body"><hr id="83c8ddba-46f6-4906-88c7-56541e1c8872"/><p id="48d332a5-14d0-4fe7-9779-d679290de083" class=""><span style="border-bottom:0.05em solid">Link turma Google Sala de Aula:</span> <a href="https://classroom.google.com/c/NDcxNjI4NTkzNzkz?cjc=a4r2jat">https://classroom.google.com/c/NDcxNjI4NTkzNzkz?cjc=a4r2jat</a></p><p id="fabacb05-7abe-43f4-9ec8-14bcf80f25be" class="block-color-blue_background"><strong>Horário de Atendimento: </strong>sextas-feiras de 09:45 as 10:45</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a17a5424-4974-4be3-9162-39ad5a71c6c2"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><strong>Plano de Aula (80h)</strong><ul id="4ea50fd0-e8a6-4c97-9308-2e09f06c666c" class="bulleted-list"><li style="list-style-type:disc">Link</li></ul></div></figure><h1 id="f2b7bdde-9189-43e2-9cb8-7979c413f2a3" class=""><strong>Objetivos</strong></h1><hr id="fc4d6d3a-4cdb-434c-bc5c-a48f2f4d3094"/><p id="018f80b7-6c83-4a1f-91e2-93cfe3de57b0" class="">Fornecer ao aluno conhecimento para garantir disponibilidade, integridade e confiabilidade das informações que trafegam na rede. Abordar o gerenciamento de riscos e as políticas de segurança.</p><h2 id="37a8790e-c0cb-4d25-a37f-8fd339fd2763" class="">Ementa</h2><p id="3e13e173-5dba-4f08-9637-d98f97fb0163" class="">Fundamentos de Segurança da Informação, Introdução à Criptografia, Firewalls, Detecção e Prevenção de Invasões e Segurança em Redes Sem Fio.</p><h2 id="3d7ba7e1-6ee1-45c9-95b8-d6ff4dd88637" class="">Avaliação</h2><ul id="2a0d52ba-7dde-4a71-a9bb-e7cbffcf9690" class="bulleted-list"><li style="list-style-type:disc">Aulas expositivas/demonstrativas;</li></ul><ul id="fb3db829-133b-4ed4-bd2d-481745a90478" class="bulleted-list"><li style="list-style-type:disc">Atividades de Leitura e escrita.</li></ul><p id="54a20306-e320-4914-b827-626954774352" class="">A avaliação é realizada de forma processual e cumulativa. A saber: avaliações escritas, trabalhos de leitura e escritas e seminários.</p><h2 id="217df700-c43e-49e1-b6a3-1f16a446f5de" class="">Slides/Notas de Aula</h2><p id="ccd5a2f4-a156-4592-96bb-8c36d3b2c3de" class="block-color-teal"><strong>- N1</strong></p><ul id="8fc75bae-00eb-4c6c-a4fb-89c5ceb59c16" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 01 (08/03/22)</strong>: Visão Geral da Disciplina +<a href="https://drive.google.com/file/d/18btlX0LagCeslXUHjcdNP3o4zYG5cmGD/view?usp=sharing"> Introdução </a></li></ul><ul id="6f88a6b7-0aac-400a-9149-98e2c1dafbf7" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 02 (08/03/22 - AB tarde/BIO)</strong>: <a href="https://www.mindmeister.com/pt/1691068576?t=PhuiUl8cyN">Revisão de Redes</a> + <a href="https://drive.google.com/file/d/1wVopO63sFn0QiFptkM5L9hE0d-mD-9Xw/view?usp=sharing">Revisão de Comunicação de Dados</a> + Resumo fascículos</li></ul><ul id="31c6c287-30f4-4865-97d5-259ff8c9ecd9" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 03 (10/03/22)</strong>: <a href="https://drive.google.com/file/d/18btlX0LagCeslXUHjcdNP3o4zYG5cmGD/view?usp=sharing">Riscos na Internet</a></li></ul><ul id="2a8287cb-d356-4e73-8616-abcba9aa0838" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 04 (15/03/22)</strong>: <a href="https://drive.google.com/file/d/18btlX0LagCeslXUHjcdNP3o4zYG5cmGD/view?usp=sharing">Conceitos e princípios básicos de Segurança da Informação</a></li></ul><ul id="3d7d72eb-5441-43b5-8fb7-9a939138198a" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 05 (17/03/2022): </strong> <a href="https://drive.google.com/file/d/18btlX0LagCeslXUHjcdNP3o4zYG5cmGD/view?usp=sharing">Softwares Maliciosos (</a><a href="https://drive.google.com/file/d/18btlX0LagCeslXUHjcdNP3o4zYG5cmGD/view?usp=sharing"><em>malwares</em></a><a href="https://drive.google.com/file/d/18btlX0LagCeslXUHjcdNP3o4zYG5cmGD/view?usp=sharing">) e ataques a sistemas</a>.</li></ul><ul id="36f462c8-6279-469a-a5ea-60d56a915022" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 06 (22/03/2022):</strong><a href="https://drive.google.com/file/d/1Rd0hCGZsN4o6H3n3S_9ndhbhbs9w6zwz/view?usp=sharing"><strong> </strong></a><a href="https://drive.google.com/file/d/1Rd0hCGZsN4o6H3n3S_9ndhbhbs9w6zwz/view?usp=sharing">Malwares e ataques aos sistemas</a></li></ul><ul id="d0ad9d0d-060a-4785-a14a-dd1362dd90c6" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 07 (24/03/2022): </strong><a href="https://drive.google.com/file/d/1yXZRMkO9Hj5uZZnOPFpYC4Zoyfi6whBV/view?usp=sharing">Google Hacking e vulnerabilidades na Web</a></li></ul><ul id="26adf557-e58c-450b-aa75-13ff8f3a5dec" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 08 (31/03/2022): </strong><a href="https://drive.google.com/file/d/1OlGc5ai-nPZJfqZZ5gnlJL-mPQOFS3L1/view?usp=sharing">Arquitetura de Segurança X.800: Ataques</a></li></ul><ul id="f1fc3c87-db6a-4777-bc2b-8d4d929644a2" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 09 (05/04/2022): </strong><a href="https://drive.google.com/file/d/1OlGc5ai-nPZJfqZZ5gnlJL-mPQOFS3L1/view?usp=sharing">Arquitetura de Segurança X.800: Serviços e Mecanismos</a></li></ul><ul id="d24c65dd-a239-44f9-b5b5-72a4670e3aa8" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula  10 (07/04/2022)</strong>: Apresentação de Seminários</li></ul><p id="29569cd8-ba7b-4062-ba0b-5de8c11d3a65" class="block-color-teal"><strong> —Avaliações: </strong></p><p id="01f808a4-90a2-42d4-a9a8-2011c2a04009" class="block-color-teal"><strong>- N2</strong></p><ul id="af47f2e4-29f1-4483-a51c-ea27ab94c258" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula  11 (07/04/2022-</strong><span style="border-bottom:0.05em solid"><strong>Reposição do Sábado Letivo 02/04 </strong></span><strong>- Aula CD Tarde)</strong>: Continuação das apresentações de Seminários.</li></ul><ul id="0d8aa6a0-99ff-4458-b8f1-d1ab7f912e8d" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 12 (12/04/2022): </strong><a href="https://drive.google.com/file/d/1rPDOeltlEkoDJpaNuIUskIijPvKdKMCH/view?usp=sharing">Normas de Segurança da Informação e Controle de Ativos</a></li></ul><ul id="3d804543-89d7-4069-888d-ff47628fbb59" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 13 (19/04/2022):</strong> Correção da lista e revisão para a avaliação.</li></ul><ul id="735c1a42-ecde-48bc-9c4b-7475a4b93858" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula - (21/04/2022): FERIADO</strong></li></ul><ul id="049744e0-c7d7-4164-ab3d-17736d852bc9" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 14 (22/04/2022- Anteposição</strong><span style="border-bottom:0.05em solid"><strong> do Sábado Letivo 23/04 </strong></span><strong>- AB Manhã)</strong>: Avaliação escrita.</li></ul><ul id="b75ad588-c39e-4f58-938b-6f7226f56cf5" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 14 (26/04/2022):</strong> <strong>Troca com a  profa Kelvia</strong></li></ul><ul id="0058c57f-fd57-46cd-9317-85773a7646c7" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 15 (28/04/2022):</strong> <a href="https://drive.google.com/file/d/1ue-IzPU8OPHMlSH80LEKzEPla5bc3imm/view?usp=sharing">Ferramentas de Descoberta e Exploração</a> </li></ul><ul id="8f8b7a38-a2ba-4bf5-bcb8-711446e51956" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 16 (03/05/2022): </strong><a href="https://drive.google.com/file/d/1Bcf6Cl_zxF02-b38MCZXP7gRQ_TzHJTl/view?usp=sharing">ABNT NBR 27001</a> + Trabalho 27001.</li></ul><ul id="75ac4df2-e793-4a89-9b50-a15c539519a3" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 17 (04/05/2022): </strong><a href="https://drive.google.com/file/d/1OCDGRJ0KsJ5OkRsOnqj4C8uzT5Qhj5VA/view?usp=sharing">Análise de Tráfego de Rede com Wireshark e instalação</a></li></ul><ul id="b227fd6a-5750-40f8-b4c6-3dee604e4620" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 18 (05/05/2022): </strong>Aula <a href="https://drive.google.com/file/d/1UV1QVzsJw3aKk93blBEVFZ4nppy-ez-e/view?usp=sharing">Utilizando filtros no Wireshark</a></li></ul><p id="f2f99849-da96-4873-8959-0040dbb787a7" class="block-color-teal"><strong>—Avaliações: </strong></p><p id="dc0b9de9-eb75-4cc8-9db0-9c858e4d5f17" class="block-color-teal"><strong>- N3</strong></p><ul id="df0b5349-2768-4756-9648-69355d4ff9c3" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 19 (10/05/2022):</strong> Filtros Wireshark + Prática Wireshark/Relatório</li></ul><ul id="79a4b97f-ea4d-4eb1-b7f2-596754b59836" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 20</strong> (12/05/2022): <a href="https://drive.google.com/file/d/1KHbjDoGTFenusgNWWr4BoODdDq4cNcOi/view?usp=sharing">Prática SQL injection</a></li></ul><ul id="5bee6d4a-f965-4d6b-996c-8a6f8676c44a" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 21 (20/05/2022 - Troca com o prof. Gerardo): </strong><a href="https://drive.google.com/file/d/1t9Kw8dHzXlb9aQhXPvow9u1U_x__LGLt/view?usp=sharing">Política de Segurança da Informação - PSI</a></li></ul><ul id="3e00c7e7-4808-4acb-8e22-1acde732985f" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 22 (24/05/2022): </strong>SBRC 2022 - V Workshop de Trabalhos de Iniciação Científica e de Graduação (WTG)</li></ul><ul id="905f506f-e8f2-4bb6-88a5-11f195f08b44" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 23 (24/05/2022 </strong>- Reposição Troca com o Prof. Paulo): <a href="https://drive.google.com/file/d/1niaYlQiY2rDHDyTR9i75sm8CxFRl_wnK/view?usp=sharing">ABNT NBR27002</a> + SBRC 2022 Palestra: Evolução do 5G em direção ao 6G – Entendendo as redes de campus abertos como impulsionadores das inovações 6G</li></ul><ul id="9d21e8ac-7b78-4f97-ad5c-22a744295bda" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 24 (26/05/2022): </strong>Participação no SBRC 2022. Palestra: Medindo e mitigando o viés e a injustiça em sistemas sociotécnicos</li></ul><ul id="910be83c-ce31-4a1f-ac7d-26413ff2ed94" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 25 (31/05/2022): </strong>Participacao nos JIIFS.</li></ul><ul id="4cff1d59-b021-4fa0-935e-2a92ea9ee38a" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 26 (02/06/2022)</strong>: Instalação do Sistema Operacional Kali Linux.</li></ul><ul id="708fdbd1-c992-4bc9-903a-4adb329763ef" class="bulleted-list"><li style="list-style-type:disc"><strong>Aula 27 (07/06/2022): </strong></li></ul><ul id="42061fcc-155f-4b64-aa03-0e2665b6fd27" class="bulleted-list"><li style="list-style-type:disc">Aula 28 (09/06/2022): </li></ul><ul id="e65b6fd1-2968-4d9f-a4eb-4ef5865d9090" class="bulleted-list"><li style="list-style-type:disc">Aula 29 (14/06/2022):</li></ul><ul id="d6326b4f-5037-40f5-ac68-6380a96088b8" class="bulleted-list"><li style="list-style-type:disc">Aula 30 (16/06/2022): Avaliação Escrita</li></ul><ul id="c55e6124-64a9-4aec-a439-16cf74c21eb9" class="bulleted-list"><li style="list-style-type:disc">Aula 31 (21/06/2022):</li></ul><ul id="0d53fb48-3479-4279-bf77-daa0e472e35a" class="bulleted-list"><li style="list-style-type:disc">Aula 32 (23/06/2022): </li></ul><ul id="e0e414dc-c88d-49f8-a010-630b27ca1230" class="bulleted-list"><li style="list-style-type:disc">Aula 33 (28/06/2022): </li></ul><ul id="da011ccd-9bd8-417c-bab9-a0b9e143c7ad" class="bulleted-list"><li style="list-style-type:disc">Aula 34 (30/06/2022): Apresentação Seminários</li></ul><figure id="63b6ca72-64cb-493c-9f4c-c8d9abfb27b2" class="link-to-page"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Agenda%20participac%CC%A7a%CC%83o%20SBRC%202022%2063b6ca7264cb493c9f4cc8d9abfb27b2.html">Agenda participação SBRC 2022</a></figure><p id="cfec649d-c0b0-42a2-a1fc-4249f0eb76f6" class="block-color-teal"><strong>—Avaliações: </strong></p><p id="1d70ded9-18f8-422e-95aa-a67ea37092b4" class="block-color-teal"><strong>- N2</strong></p><h2 id="b25d9d93-a8da-4efa-a648-5c049430474e" class="">Exercícios</h2><ul id="5cb5e232-494e-4f04-8b03-f61fd15dcb0b" class="bulleted-list"><li style="list-style-type:disc">Ler <a href="https://padlet.com/raiane_ti/eyr9210q952yan1">Mural de Notícias</a> ⭐</li></ul><ul id="3c9f4248-4faf-458b-8d86-3d94c5a20d53" class="bulleted-list"><li style="list-style-type:disc">Ler ABNT IEC 27001 e Lei 12.737 ⭐</li></ul><ul id="4209e2df-f418-4252-904c-581de3eaf40a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://docs.google.com/document/d/1B-_g8zE7tzOY67rI_jJVzCYtUhUScaMo/edit?usp=sharing&amp;ouid=112130934890985553586&amp;rtpof=true&amp;sd=true">Lista I</a> <mark class="highlight-red"><strong>(Entrega dia 12/04)</strong></mark></li></ul><h2 id="7deff2d6-c3b4-48ff-990c-128d55d7ca89" class="">Avaliações</h2><ul id="85c28eaa-57d0-4eb5-899d-7d3d2027048a" class="bulleted-list"><li style="list-style-type:disc">N1 (Lista I + Seminário + AP1) <mark class="highlight-red"><span style="border-bottom:0.05em solid">Encerrar até 13/05</span></mark><mark class="highlight-red"> </mark><ul id="58b61945-cea8-4482-8fee-0631c5d3b454" class="bulleted-list"><li style="list-style-type:circle">6 equipes com 3 alunos e 2 equipes com 4 alunos</li></ul><ul id="9dc80015-3164-4df5-987d-48ca570a51fa" class="toggle"><li><details open=""><summary><mark class="highlight-orange">Seminário </mark>(apresentação <strong>07/04</strong>)</summary><hr id="39825637-097d-4754-810a-e7a8e96b5ee2"/><p id="7f354cb0-85e9-4b8f-9051-59ff8ce8d737" class=""> -<em> dúvidas enviem para o email </em><em><a href="mailto:raiane.santos@ifce.edu.br">raiane.santos@ifce.edu.br</a></em><em> /whatsapp</em></p><div id="741eda92-8475-4e9e-baea-ac8a53b2a154" class="collection-content"><h4 class="collection-title">Temas</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Temas</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Column</th></tr></thead><tbody><tr id="dafc1bc1-b8d8-4a5f-89d9-a47b4e4fc713"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20741eda9284754e9ebaeaac8a53b2a154/TEMA%2001%20-%20Invasa%CC%83o%20Informa%CC%81tica%20dafc1bc1b8d84a5f89d9a47b4e4fc713.html">TEMA 01 - Invasão Informática</a></td><td class="cell-R{b;"></td></tr><tr id="2f80c112-e99e-4b87-aa71-5b883b6cdc20"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20741eda9284754e9ebaeaac8a53b2a154/TEMA%2002%20-%20Golpes%20na%20Internet%20e%20Come%CC%81rcio%20Eletro%CC%82ni%202f80c112e99e4b87aa715b883b6cdc20.html">TEMA 02 - Golpes na Internet e Comércio Eletrônico</a></td><td class="cell-R{b;"></td></tr><tr id="751ce0d7-c4c4-4bc5-b261-36a4834554d5"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20741eda9284754e9ebaeaac8a53b2a154/TEMA%2003%20-%20Boatos%20e%20Redes%20Sociais%20751ce0d7c4c44bc5b26136a4834554d5.html">TEMA 03 - Boatos e Redes Sociais</a></td><td class="cell-R{b;"></td></tr><tr id="89cb24ed-ac84-47f3-8179-5f9bba36fb19"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20741eda9284754e9ebaeaac8a53b2a154/TEMA%2004%20-Cyberterrorimo%2089cb24edac8447f381795f9bba36fb19.html">TEMA 04 -Cyberterrorimo</a></td><td class="cell-R{b;"></td></tr><tr id="3848b448-8683-4689-a133-afb80a8b2a00"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20741eda9284754e9ebaeaac8a53b2a154/TEMA%2005%20-%20Stalking%20e%20Cyberstalking%203848b44886834689a133afb80a8b2a00.html">TEMA 05 - Stalking e Cyberstalking</a></td><td class="cell-R{b;"></td></tr><tr id="80e889d1-e243-455b-a8fd-6f0748d9253d"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20741eda9284754e9ebaeaac8a53b2a154/TEMA%2006%20-%20Marco%20Civil%20da%20Internet%20(LEI%20n%C2%BA%2012%20965)%2080e889d1e243455ba8fd6f0748d9253d.html">TEMA 06 - Marco Civil da Internet (LEI nº 12.965)</a></td><td class="cell-R{b;"></td></tr><tr id="e5e842d5-336a-45a3-8d4b-139af37eb48f"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20741eda9284754e9ebaeaac8a53b2a154/TEMA%2007%20-%20Lei%20Geral%20de%20Protec%CC%A7a%CC%83o%20dos%20Dados%20-%20LGPD%20e5e842d5336a45a38d4b139af37eb48f.html">TEMA 07 - Lei Geral de Proteção dos Dados - LGPD (Lei nº 13.709)</a></td><td class="cell-R{b;"></td></tr><tr id="1eb4734f-19bf-4507-a7ca-36a76ccf6fb4"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20741eda9284754e9ebaeaac8a53b2a154/TEMA%2008%20-%20Privacidade%20e%20Protec%CC%A7a%CC%83o%20de%20Dados%20de%20Cri%201eb4734f19bf4507a7ca36a76ccf6fb4.html">TEMA 08 - Privacidade e Proteção de Dados de Crianças e Adolescentes</a></td><td class="cell-R{b;"></td></tr></tbody></table></div><div id="7c53f2b0-3207-4754-aef4-264f6f65fdcf" class="collection-content"><h4 class="collection-title">Equipes e Temas</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Equipe</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>TEMA</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Alunos Ausnetes/FJ</th></tr></thead><tbody><tr id="b8ed6b96-cf09-4d0b-a992-2403606a7c3a"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%207c53f2b032074754aef4264f6f65fdcf/Alica,%20Maria%20Clara,%20Sofiah%20e%20Rian%20b8ed6b96cf094d0ba9922403606a7c3a.html">Alica, Maria Clara, Sofiah e Rian</a></td><td class="cell-LnzW">1</td><td class="cell-SjyJ"></td></tr><tr id="b30872d3-6826-4b09-a0c9-e3466a17d745"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%207c53f2b032074754aef4264f6f65fdcf/Amanda,%20Ana%20Louiza%20e%20Lara%20b30872d368264b09a0c9e3466a17d745.html">Amanda, Ana Louiza e Lara</a></td><td class="cell-LnzW">3</td><td class="cell-SjyJ"></td></tr><tr id="f42a4f03-bda0-4b71-9b3e-686e81c9c5a9"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%207c53f2b032074754aef4264f6f65fdcf/Renan,%20Werbson%20e%20Vinicius%20f42a4f03bda04b719b3e686e81c9c5a9.html">Renan, Werbson e Vinicius</a></td><td class="cell-LnzW">7</td><td class="cell-SjyJ">Viniciues Doente</td></tr><tr id="d58fea96-2cf7-4199-b77d-1d6e50a6f58a"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%207c53f2b032074754aef4264f6f65fdcf/Heloi%CC%81sa,%20Lorrana,%20Carolina%20e%20Mylena%20d58fea962cf74199b77d1d6e50a6f58a.html">Heloísa, Lorrana, Carolina e Mylena</a></td><td class="cell-LnzW">2</td><td class="cell-SjyJ"></td></tr><tr id="e7c943ef-67f3-400a-ab09-3353623e5ae8"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%207c53f2b032074754aef4264f6f65fdcf/Gean,%20Tarci%CC%81sio%20e%20Wesley%20e7c943ef67f3400aab093353623e5ae8.html">Gean, Tarcísio e Wesley</a></td><td class="cell-LnzW">4</td><td class="cell-SjyJ"></td></tr><tr id="06c925be-454d-42c1-b0c2-f1d1bb0e77cc"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%207c53f2b032074754aef4264f6f65fdcf/Celyane,%20Maria%20Fernanda%20e%20Ruan%20Rikelme%2006c925be454d42c1b0c2f1d1bb0e77cc.html">Celyane, Maria Fernanda e Ruan Rikelme</a></td><td class="cell-LnzW">6</td><td class="cell-SjyJ"></td></tr><tr id="9fc72c7d-07b2-4340-a413-ec6a3b8e6baf"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%207c53f2b032074754aef4264f6f65fdcf/Sanara,%20Antonio%20Carlos%20e%20Andrey%209fc72c7d07b24340a413ec6a3b8e6baf.html">Sanara, Antonio Carlos e Andrey</a></td><td class="cell-LnzW">8</td><td class="cell-SjyJ">Antonio Carlos</td></tr><tr id="98bd40d6-7239-4faa-8f90-112d79bdfbe5"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%207c53f2b032074754aef4264f6f65fdcf/Guilherme,%20Joa%CC%83o%20Lucas%20e%20Joa%CC%83o%20Paulo%2098bd40d672394faa8f90112d79bdfbe5.html">Guilherme, João Lucas e João Paulo </a></td><td class="cell-LnzW">5</td><td class="cell-SjyJ"></td></tr></tbody></table></div></details></li></ul><ul id="88c8a611-17fc-4078-abad-b6dc86d0b770" class="block-color-red bulleted-list"><li style="list-style-type:circle"><strong>Lista 01</strong> - (Prazo de entrega <strong>_/</strong>_)</li></ul></li></ul><ul id="2e4386ea-0720-4e71-aad6-5a3558f28098" class="bulleted-list"><li style="list-style-type:disc">N2 (Atividade em Sala + Dinâmica + Avaliação (com peso 2)) <mark class="highlight-red"><span style="border-bottom:0.05em solid">Encerrar até 13/05</span></mark><mark class="highlight-red"> </mark></li></ul><ul id="2010ec32-36ee-451c-afe4-8b64dc2bed5d" class="bulleted-list"><li style="list-style-type:disc">N3 </li></ul><ul id="0fd7e531-dca0-4213-9699-1193e501ff55" class="bulleted-list"><li style="list-style-type:disc">N4<ul id="cd88a52b-d902-426a-8563-9331f06f1eee" class="toggle"><li><details open=""><summary><mark class="highlight-orange">Seminário </mark>(apresentação 30<strong>/06</strong>)</summary><hr id="e7b067aa-c393-44d9-b9cd-6576663f0ab5"/><p id="09528305-709c-4c67-b523-e1eb15c400c9" class=""> -<em> dúvidas enviem para o email </em><em><a href="mailto:raiane.santos@ifce.edu.br">raiane.santos@ifce.edu.br</a></em><em> /whatsapp</em></p><div id="d893039f-e581-4732-8a19-ece1aaf96f21" class="collection-content"><h4 class="collection-title">Temas</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Temas</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Column</th></tr></thead><tbody><tr id="ab2592e4-b5dc-4ff8-b539-a83a4b1f6182"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20d893039fe58147328a19ece1aaf96f21/TEMA%2001%20-%20Nessus%20ab2592e4b5dc4ff8b539a83a4b1f6182.html">TEMA 01 - Nessus</a></td><td class="cell-R{b;"></td></tr><tr id="e55369e8-4897-449e-bc19-2241a535c218"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20d893039fe58147328a19ece1aaf96f21/TEMA%2002%20-%20Nagios%20e55369e84897449ebc192241a535c218.html">TEMA 02 - Nagios</a></td><td class="cell-R{b;"></td></tr><tr id="da321c83-f377-4263-865d-88f7025cce44"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20d893039fe58147328a19ece1aaf96f21/TEMA%2003%20-%20Nikto%20da321c83f3774263865d88f7025cce44.html">TEMA 03 - Nikto</a></td><td class="cell-R{b;"></td></tr><tr id="90cf8536-f738-4ff8-a432-5af9e37ecb9b"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20d893039fe58147328a19ece1aaf96f21/TEMA%2004%20-Cyberterrorimo%2090cf8536f7384ff8a4325af9e37ecb9b.html">TEMA 04 -Cyberterrorimo</a></td><td class="cell-R{b;"></td></tr><tr id="ca0689bf-e0c2-4c07-9529-7347b627375c"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20d893039fe58147328a19ece1aaf96f21/TEMA%2005%20-%20Stalking%20e%20Cyberstalking%20ca0689bfe0c24c0795297347b627375c.html">TEMA 05 - Stalking e Cyberstalking</a></td><td class="cell-R{b;"></td></tr><tr id="b3b0a358-6920-4075-9973-d8e141eda24d"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20d893039fe58147328a19ece1aaf96f21/TEMA%2006%20-%20Marco%20Civil%20da%20Internet%20(LEI%20n%C2%BA%2012%20965)%20b3b0a358692040759973d8e141eda24d.html">TEMA 06 - Marco Civil da Internet (LEI nº 12.965)</a></td><td class="cell-R{b;"></td></tr><tr id="5dd15b5c-0f12-4d8d-82a4-15bca124da93"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20d893039fe58147328a19ece1aaf96f21/TEMA%2007%20-%20Lei%20Geral%20de%20Protec%CC%A7a%CC%83o%20dos%20Dados%20-%20LGPD%205dd15b5c0f124d8d82a415bca124da93.html">TEMA 07 - Lei Geral de Proteção dos Dados - LGPD (Lei nº 13.709)</a></td><td class="cell-R{b;"></td></tr><tr id="536c2564-cf60-4d18-9889-22017ea5c17d"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Temas%20d893039fe58147328a19ece1aaf96f21/TEMA%2008%20-%20Privacidade%20e%20Protec%CC%A7a%CC%83o%20de%20Dados%20de%20Cri%20536c2564cf604d18988922017ea5c17d.html">TEMA 08 - Privacidade e Proteção de Dados de Crianças e Adolescentes</a></td><td class="cell-R{b;"></td></tr></tbody></table></div><div id="010157a2-772b-44dc-b2e5-8753cee967bf" class="collection-content"><h4 class="collection-title">Equipes e Temas</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Equipe</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>TEMA</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Alunos Ausnetes/FJ</th></tr></thead><tbody><tr id="ff26c338-1409-4713-bf7a-7f844a3a4c98"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%20010157a2772b44dcb2e58753cee967bf/Alica,%20Maria%20Clara,%20Sofiah%20e%20Rian%20ff26c33814094713bf7a7f844a3a4c98.html">Alica, Maria Clara, Sofiah e Rian</a></td><td class="cell-LnzW">1</td><td class="cell-SjyJ"></td></tr><tr id="a49274cf-26c4-4821-a8ca-32d2cc1b9a41"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%20010157a2772b44dcb2e58753cee967bf/Amanda,%20Ana%20Louiza%20e%20Lara%20a49274cf26c44821a8ca32d2cc1b9a41.html">Amanda, Ana Louiza e Lara</a></td><td class="cell-LnzW">3</td><td class="cell-SjyJ"></td></tr><tr id="96165bd8-ee96-419a-8667-de7c295588cf"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%20010157a2772b44dcb2e58753cee967bf/Renan,%20Werbson%20e%20Vinicius%2096165bd8ee96419a8667de7c295588cf.html">Renan, Werbson e Vinicius</a></td><td class="cell-LnzW">7</td><td class="cell-SjyJ">Viniciues Doente</td></tr><tr id="69dd866b-1e16-4ad4-9324-f724f61c7595"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%20010157a2772b44dcb2e58753cee967bf/Heloi%CC%81sa,%20Lorrana,%20Carolina%20e%20Mylena%2069dd866b1e164ad49324f724f61c7595.html">Heloísa, Lorrana, Carolina e Mylena</a></td><td class="cell-LnzW">2</td><td class="cell-SjyJ"></td></tr><tr id="d06b598a-aeee-4a20-b25b-d56a7f52697b"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%20010157a2772b44dcb2e58753cee967bf/Gean,%20Tarci%CC%81sio%20e%20Wesley%20d06b598aaeee4a20b25bd56a7f52697b.html">Gean, Tarcísio e Wesley</a></td><td class="cell-LnzW">4</td><td class="cell-SjyJ"></td></tr><tr id="3da378c7-18dd-4a4d-8a0b-bed7020c99e7"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%20010157a2772b44dcb2e58753cee967bf/Celyane,%20Maria%20Fernanda%20e%20Ruan%20Rikelme%203da378c718dd4a4d8a0bbed7020c99e7.html">Celyane, Maria Fernanda e Ruan Rikelme</a></td><td class="cell-LnzW">6</td><td class="cell-SjyJ"></td></tr><tr id="ab92bb65-41e7-44cb-b8b8-0d393b99a252"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%20010157a2772b44dcb2e58753cee967bf/Sanara,%20Antonio%20Carlos%20e%20Andrey%20ab92bb6541e744cbb8b80d393b99a252.html">Sanara, Antonio Carlos e Andrey</a></td><td class="cell-LnzW">8</td><td class="cell-SjyJ">Antonio Carlos</td></tr><tr id="f5e461a2-59f5-4543-b75e-7039ddd889da"><td class="cell-title"><a href="Seguranc%CC%A7a%20de%20Redes%20b3482a54fb224e86b16377bc34eccf75/Equipes%20e%20Temas%20010157a2772b44dcb2e58753cee967bf/Guilherme,%20Joa%CC%83o%20Lucas%20e%20Joa%CC%83o%20Paulo%20f5e461a259f54543b75e7039ddd889da.html">Guilherme, João Lucas e João Paulo </a></td><td class="cell-LnzW">5</td><td class="cell-SjyJ"></td></tr></tbody></table></div></details></li></ul></li></ul><p id="cdebe20f-ab1b-47f4-9fdf-3cdf4f430eb5" class="">AF(todo o conteúdo da disciplina)</p><h2 id="b8dbd009-3db6-4566-ad28-66288e56650a" class="">Bibliografia</h2><ul id="9dee25cd-b0e7-442d-964c-57d162eca428" class="toggle"><li><details open=""><summary><strong>Básica</strong></summary><ul id="fcebaaf5-a520-465c-a54f-3130960cd8a9" class="bulleted-list"><li style="list-style-type:disc">NAKAMURA,Emílio T. . GEUS, Paulo L. <strong>Segurança de Redes em Ambientes Cooperativos</strong> 1ed. Novatec, São Paulo – 2007.</li></ul><ul id="b446bc37-d3f9-4796-b419-a09618d8bf93" class="bulleted-list"><li style="list-style-type:disc">TANENBAUM, Andrew S. et al. <strong>Redes de computadores.</strong> 5. ed. São Paulo, SP: Pearson Prentice Hall, 2011. 582 p. Inclui bibliografia. ISBN 9788576059240.</li></ul><ul id="008b479a-a0d7-4910-8ea1-f730f396d2ef" class="bulleted-list"><li style="list-style-type:disc">CAMPOS, André L.N. <strong>Sistema de Segurança da Informação</strong> – Controlando os Riscos 2ed. Visual Books, Florianópolis – 2008.</li></ul><ul id="5dab8fa8-c3f1-4ebe-8c63-7f6a31e68dc5" class="bulleted-list"><li style="list-style-type:disc">STALLINGS, William <strong>Criptografia e Segurança em Redes – Princípios e Práticas </strong>4ed. Prentice Hall do Brasil, São Paulo - 2008.</li></ul></details></li></ul><ul id="dff27ba3-9d56-428c-8229-2d2a67d10db2" class="toggle"><li><details open=""><summary><strong>Complementar</strong></summary><ul id="b9e62bac-d17d-4b84-b338-201ec81d1115" class="bulleted-list"><li style="list-style-type:disc">KUROSE, James F. et al. <strong>Redes de computadores e a internet: uma abordagem top-down</strong>. 6. ed. São Paulo, SP: Pearson Education do Brasil, 2013. 634 p. Bibliografia. ISBN 9788581436777.</li></ul><ul id="b5ba683f-1d6a-401e-a198-dbe83c762648" class="bulleted-list"><li style="list-style-type:disc">MITNICK, Kevin - <strong>A Arte de Enganar</strong> – Editora Pearson Makron, 2003.</li></ul><ul id="f8a70b02-d110-46a5-b691-26f303056afb" class="bulleted-list"><li style="list-style-type:disc">Normas ABNT - <strong>Sistemas de gestão de segurança da informação - Requisitos</strong> - ABNT NBR ISO/IEC 27001:2006; <strong>Sistemas de gestão de segurança da informação</strong> ABNT NBR ISO/IEC 27002:2005 - <strong>Código de prática; Sistemas de gestão de segurança da informação</strong> ABNT NBR ISO/IEC 27005:2008 – <strong>Gestão de Riscos</strong></li></ul></details></li></ul><h2 id="34fa5977-1879-4e59-8e67-1f6c79af056d" class="">Informações/Materiais Adicionais</h2><ul id="e07ef587-2efd-4ed1-a23d-debf9a45355f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cert.br/">Cert.BR</a></li></ul><ul id="b550f88b-39d6-4d33-939e-aae2603e1997" class="bulleted-list"><li style="list-style-type:disc"><a href="https://internetsegura.br/">Internet Segura</a></li></ul><ul id="849cdba4-7387-44d3-8fdc-f049bf50f706" class="bulleted-list"><li style="list-style-type:disc"><a href="https://registro.br/">Registro.br</a></li></ul><ul id="e880cc81-ff05-47db-abbf-32e32eed9fc1" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cartilha.cert.br/fasciculos/">Fascículos </a></li></ul><ul id="b186fdf3-2933-44fd-8077-98ddc3ddb2bf" class="bulleted-list"><li style="list-style-type:disc"><a href="https://cartilha.cert.br/livro/cartilha-seguranca-internet.pdf">Cartilha de Segurança para a Internet</a> (CERT.br)</li></ul><ul id="dbd98a92-cd33-49a0-81ab-556c4125a3a4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://itsrio.org/wp-content/uploads/2021/10/Privacidade-e-Protecao-de-Dados-de-Crian%C3%A7as-e-Adolescentes-ITS.pdf">Privacidade e Proteção de Dados de Crianças e Adolescente</a>s</li></ul><ul id="80c10542-d19d-4248-b89b-78939a6c41ca" class="bulleted-list"><li style="list-style-type:disc">📔 <a href="https://plataforma.bvirtual.com.br/Acervo/Publicacao/22446">Criptografia e segurança de rede</a>s, 6ª edição (STALLINGS)</li></ul><ul id="f2dae28e-6427-4ab4-bb46-42a1e5a2dd87" class="bulleted-list"><li style="list-style-type:disc">📔 Segurança em Redes 4ª edição (NAKAMURA).</li></ul><ul id="9edd750f-cfd5-46e1-a32f-f678286d2c5e" class="bulleted-list"><li style="list-style-type:disc">📔<a href="https://plataforma.bvirtual.com.br/Acervo/Publicacao/160044"> Fundamentos de Segurança da Informação</a>: com base na ISO 27001 e na ISO 27002 </li></ul><ul id="ca4c04f1-b074-4ba9-99fe-4a78bc0ce3c0" class="bulleted-list"><li style="list-style-type:disc">📔 <a href="https://plataforma.bvirtual.com.br/Acervo/Publicacao/3843">Redes de computadores e a internet: uma abordagem top-down</a>, 6ed (KUROSE) </li></ul><ul id="2b6c829a-c272-47f4-b9a3-d139074d26e6" class="bulleted-list"><li style="list-style-type:disc">📔 <a href="https://plataforma.bvirtual.com.br/Acervo/Publicacao/2610">Redes de Computadores</a> - 5ª edição (TANENBAUM) </li></ul><ul id="9c073315-fd7c-452b-a7a1-af83aeaf94c4" class="bulleted-list"><li style="list-style-type:disc">📔<a href="https://plataforma.bvirtual.com.br/Acervo/Publicacao/185668"> Projeto estruturado e gerência de redes</a> (CASSIANA) </li></ul><ul id="54ce88a3-fdc4-4801-ab99-2c4b61f90329" class="bulleted-list"><li style="list-style-type:disc">📔 <a href="https://plataforma.bvirtual.com.br/Acervo/Publicacao/160683">Zabbix</a> (JANSSEN)</li></ul><ul id="9729cebf-ae9d-4cd2-91c4-e2994adf5dd0" class="bulleted-list"><li style="list-style-type:disc">📔<a href="https://www.linuxpro.com.br/dl/guia_500_comandos_Linux.pdf">Comandos Linux</a></li></ul><ul id="cd69d305-6196-4f2a-9bef-66ffc77cf526" class="bulleted-list"><li style="list-style-type:disc"><a href="https://ifce.edu.br/proen/bibliotecas/arquivos/tutorial-14a_cadastro-de-alunos-para-acesso-a-nova-plataforma-da-bvu.pdf/@@download/file/Tutorial%2014A_Cadastro%20de%20alunos%20para%20acesso%20%C3%A0%20nova%20plataforma%20da%20BVU.pdf">Acesso a BVU</a></li></ul><ul id="39689cf9-8d39-48f8-bb67-172a8e07912c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://plataforma.bvirtual.com.br/">Link BVU</a></li></ul><ul id="9e377308-c9e3-489a-82fe-4735d397357e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.whatsmyip.org/traceroute/">Networking Tools</a></li></ul><h2 id="1d479383-bfd5-4e0b-aae0-7ef90445b0ad" class="">Ferramentas/Sites</h2><ul id="2ac9c7be-9c93-4a72-850c-8d0dfb9d731c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.virustotal.com/gui/home/upload">Vírus Total</a></li></ul><ul id="7536a685-41f3-4dfc-bce7-d392f4d0c948" class="bulleted-list"><li style="list-style-type:disc"><a href="https://unshorten.it/">Unshorten.it</a></li></ul><ul id="e2b43100-9dc1-41ba-a214-cee599de46f0" class="bulleted-list"><li style="list-style-type:disc"><a href="https://myip-address.com/">MyIP</a></li></ul><ul id="c9bb4536-3319-4030-a236-e2fb052082e8" class="bulleted-list"><li style="list-style-type:disc">Download Kali Linux</li></ul><ul id="e4b59352-e0dd-4844-b3ff-295ce29758b7" class="bulleted-list"><li style="list-style-type:disc">Download <a href="https://drive.google.com/file/d/0BzmYQVmw4W7nR1dYcHFjQ1lZSWs/view?resourcekey=0-QL6IHtYDP1G8Ix6DcP-xqQ">Metasploitable</a></li></ul><ul id="d8705b4f-262c-406d-add4-f7fdbda610f1" class="bulleted-list"><li style="list-style-type:disc">Download <a href="https://drive.google.com/file/d/0BzmYQVmw4W7nSnh6S1QteEpaMTA/view?usp=sharing&amp;resourcekey=0-_Apwgeo6A6unfhoTlkZ7iA">OWASP Broken</a></li></ul><ul id="ce08b675-20a5-46cb-9a5a-bed2729d8f25" class="bulleted-list"><li style="list-style-type:disc">Virtual Box;</li></ul><ul id="8339cd37-f37d-4dee-9367-0e0432861e7d" class="bulleted-list"><li style="list-style-type:disc">Pfsense;</li></ul><ul id="98b3228c-d44f-475a-aa74-ed1bebde58f4" class="bulleted-list"><li style="list-style-type:disc">Softwares específicos; </li></ul><ul id="867569cb-6709-4abe-8f6b-7679ca939526" class="bulleted-list"><li style="list-style-type:disc">Nessus; </li></ul><ul id="b633f450-9510-4b46-8318-ef8bef8a6084" class="bulleted-list"><li style="list-style-type:disc">PGP.</li></ul><h2 id="e99b910b-59fb-4df2-a736-9a02def8f531" class="">Dicas de Livros/Filmes/Podcasts/Vídeos</h2><ul id="6d12e2fa-cf29-4538-8f09-87295396dbb4" class="bulleted-list"><li style="list-style-type:disc">Livro <strong>Guerra Cibernética:</strong> A próxima ameaça à segurança e o que fazer a respeito (Richard A. Clarke e Robert K. Knake)</li></ul><ul id="b22d01b2-7e5e-47c0-b761-c997989612c2" class="bulleted-list"><li style="list-style-type:disc">Livro <strong>A Arte de Enganar </strong>(Kevin Mitnick e William L. Simon)</li></ul><ul id="059b6c09-cb73-48a5-9c54-23dde0428fac" class="bulleted-list"><li style="list-style-type:disc">Livro <strong>Contagem Regressiva até Zero Day: </strong>Stuxnet e o lançamento da primeira arma digital do mundo (Kim Zetter)</li></ul><ul id="20a22925-f9f7-477b-8360-b70439aff65f" class="bulleted-list"><li style="list-style-type:disc">Filme <strong>O jogo da imitação</strong></li></ul><ul id="638f791b-d6e4-41df-9763-cd506eab99b4" class="bulleted-list"><li style="list-style-type:disc">Filme <em><strong><strong>Piratas do Vale do Silício</strong></strong></em></li></ul><ul id="fc613fcc-adda-4d54-87be-9ab537265d51" class="bulleted-list"><li style="list-style-type:disc">Filme <em><strong><strong>Os estagiários</strong></strong></em></li></ul><ul id="42217e24-489e-4826-936c-69b21dd46d97" class="bulleted-list"><li style="list-style-type:disc">Filme <em><strong><strong>A Rede Social</strong></strong></em></li></ul><ul id="4a260165-c4ad-4894-9228-be19a03dd808" class="bulleted-list"><li style="list-style-type:disc">Filme <strong>Os estagiários</strong></li></ul><p id="c1a28f8d-5d93-4e63-a1df-18bb93660a82" class="">
+</p></div></article></body></html>
